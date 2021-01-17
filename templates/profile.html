@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% if current_user.is_authenticated %}
+<h1 class="title">
+  Hi {{ current_user.fname }}
+</h1>
+{% else %}
+<h1 class="title">
+    ERROR! Please login firstly...
+</h1>
+{% endif %}
+
+{% endblock %}
