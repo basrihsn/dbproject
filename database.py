@@ -17,3 +17,6 @@ def create_tables():
         with connect.cursor() as cursor:
             cursor.execute(commands)
             connect.commit()
+
+def hello():
+    print("Hello")
