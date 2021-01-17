@@ -19,6 +19,7 @@ def load_user(user_id):
 
 @app.route('/')
 def home_page():
+    create_tables()
     return render_template('index.html')
 
 @login_required
