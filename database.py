@@ -16,7 +16,6 @@ def create_tables():
     with dbapi2.connect(app_url) as connect:
         with connect.cursor() as cursor:
             cursor.execute(commands)
-            connect.commit()
 
 def hello():
     print("Hello")
