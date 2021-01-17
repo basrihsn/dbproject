@@ -1,6 +1,6 @@
 import psycopg2 as dbapi2
 
-app_url = "dbname='mentorapp' user='postgres' host='localhost' password='postgres'"
+app_url = "dbname='dfgtstyn' user='dfgtstyn' host='hattie.db.elephantsql.com' password='1JGHpOdnYEde4PsbIac5BV5VmaV7bxed'"
 
 def create_tables():
     """ create tables in the PostgreSQL database"""
