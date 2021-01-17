@@ -26,12 +26,12 @@ class User(UserMixin):
 
 def get_user_id(email):
     query = """ 
-        SELECT * from users WHERE email = '%s'
+        SELECT * from users WHERE email = %s
     """
     arg = email
     with dbapi2.connect(app_url) as connect:
         with connect.cursor() as cursor:
-            cursor.execute(query, arg)
+            cursor.execute(query, [arg])
             returned_user = cursor.fetchall()
             if returned_user is not None:
                 for row in returned_user:
