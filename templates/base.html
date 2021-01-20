@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Flask Auth Example</title>
+    <title>Mentor App</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css" />
 </head>
 
@@ -39,28 +39,41 @@
                             <a href="{{ url_for('logout') }}" class="navbar-item">
                                 Logout
                             </a>
+                            <a href="{{ url_for('delete') }}" class="navbar-item">
+                                Delete Account
+                            </a>
                             {% endif %}
                         </div>
                     </div>
                 </div>
             </nav>
         </div>
-
-        <div class="container is-max-desktop">
-            <div class="notification is-primary">
-              {% if error_msg %}
-                {{ error_msg }}
-              {% endif %}
+        {% with messages = get_flashed_messages(with_categories=true) %} {% if
+            messages %} {% for category, message in messages %} {% if category ==
+            'error' %}
+            <div style="width:800px; margin:0 auto;" class="alert alert-danger alter-dismissable fade show" role="alert">
+              <strong style="font-size: 30px;">{{ message }}</strong>
+              <button type="button" class="close" data-dismiss="alert">
+                <span aria-hidden="true">&times;</span>
+              </button>
             </div>
-        </div>
-
+            {% else %}
+            <div style="width:800px; margin:0 auto;" class="alert alert-success alter-dismissable fade show" role="alert">
+              {{ message }}
+              <button type="button" class="close" data-dismiss="alert">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+        {% endif %} {% endfor %} {% endif %} {% endwith %}
         <div class="hero-body">
             <div class="container has-text-centered">
                {% block content %}
                {% endblock %}
             </div>
         </div>
+        <footer>
+            <center><small>&copy; Hasan Basri Şamlı 2021</small></center>
+        </footer>
     </section>
 </body>
-
 </html>

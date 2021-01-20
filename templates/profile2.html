@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% if current_user.is_authenticated %}
+
+<div class="container">
+    <form method="POST" action="/profile2.html">
+        Name: <input type="text" name="f_name" value="{{ f_name }}"><br>
+        Second Name: <input type="text" name="s_name" value="{{ s_name }}"><br>
+        Surname: <input type="text" name="surname" value="{{ surname }}"><br>
+        E-mail: <input type="email" name="email" value="{{ email }}"><br>
+    </form>
+</div>
+
+<a href="{{ url_for('update_profile') }}" class="button">--> Update Profile </a>
+
+{% endif %}
+{% endblock %}
