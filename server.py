@@ -13,7 +13,7 @@ app = Flask(__name__)
 app.secret_key = b'\x1d\xdd\xe8\xf1i\xaa\x961\xeb\x9b\xf5\xbd\x89W\xd3L'
 url = "dbname='mentorapp' user='postgres' host='localhost' password='postgres'"
 
-heroku_debug = False
+heroku_debug = True
 
 if not heroku_debug: # If app works in local computer
     os.environ['DATABASE_URL'] = "dbname='mentorapp' user='postgres' host='localhost' password='postgres'"
@@ -128,20 +128,6 @@ def login():
     else:
         email = request.form.get('email')
         passwordInput = request.form.get('password')
-
-    query = """SELECT user_id FROM users WHERE email = '%s'""" % (current_user.email,)
-    with psycopg2.connect(url) as connection:
-        with connection.cursor() as cursor:
-            cursor.execute(query)
-            for row in cursor.fetchall():
-                user_id = row[0]
-            query = """DELETE FROM users WHERE user_id = %s""" % (user_id)
-            cursor.execute(query)
-            logout_user()
-            connection.commit()
-            flash("You're successfully delete your account!", 'success')
-            return redirect("/")   
-
 
         user = get_user(email)
         if user is not None:
